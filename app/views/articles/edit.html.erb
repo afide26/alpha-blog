@@ -1,0 +1,35 @@
+<% if @article.errors.any? %>
+	<div class="alert alert-danger fade-in">
+		<button class="close" data-dismiss ="alert"><i class="fa fa-times-circle"></i></button>
+		<h2>The following <%= pluralize(@article.errors.count, 'error')%> prevented the article from being created:</h2>
+		<% @article.errors.full_messages.each do |error| %>
+			<ul>
+				<li><%= error %></li>
+			</ul>
+		<% end %>
+	</div>
+<% end %>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1>Editing article</h1>
+	</div>
+
+	<div class="panel-body">
+	<%= form_for @article do |f| %>
+		<div class="form-group">
+			<%= f.label :title %>
+			<%= f.text_field  :title, class:"form-control" %>
+		</div>
+		<div class="form-group">
+			<%= f.label :description %>
+			<%= f.text_area  :description, class:"form-control" %>
+		</div>
+	</div>
+	<div class="panel-footer">
+		<div class="actions">
+			<%= f.submit class:"btn btn-lg btn-default" %>
+		</div>
+	<% end %>
+	</div>
+</div>
